@@ -1,3 +1,15 @@
+#              __________________ 
+#          /\  \   __           /  /\    /\           Author      : Aniket Meshram [AniGMe]
+#         /  \  \  \         __/  /  \  /  \          Description : This file sets the fish prompt. All other
+#        /    \  \       _____   /    \/    \                       prompt functions are called from here.
+#       /  /\  \  \     /    /  /            \                      This is customized on top of Hydro Prompt.
+#      /        \  \        /  /      \/      \                     https://github.com/jorgebucaran/hydro
+#     /          \  \      /  /                \
+#    /            \  \    /  /                  \     Github Repo : https://github.com/aniketgm/dotfiles
+#   /              \  \  /  /                    \
+#  /__            __\  \/  /__                  __\
+#
+
 function fish_prompt -d 'Customized Hydro Prompt'
 
     # Set symbol before _hydro_pwd
