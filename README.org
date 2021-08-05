@@ -1,0 +1,12 @@
+* Dotfiles
+ This repo is a place for all my dotfiles.
+
+** Vim configs
+
+** Bash configs
+
+** Emacs configs
+
+** Fish configs
+
+** Powershell configs
