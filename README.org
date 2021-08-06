@@ -31,18 +31,18 @@ Configs:
 |-------------------------------+----------------------------------------------------|
 | Type                          | Package/Link/Font Name                             |
 |-------------------------------+----------------------------------------------------|
-| Package Manager               | Package: use-package                               |
-| Package Sources               | Links: melpa.org, orgmode.org, elpa.gnu.org        |
-| Global font face              | Font: Cascadia Code                                |
-| Fixed/Variable font face      | Font: Source Code                                  |
-| Theme                         | Package: doom-theme                                |
-| Modeline                      | Package: doom-modeline                             |
-| Dashboard                     | Package: dashboard                                 |
-| Navigation and Help           | Packages: ivy, swiper, counsel, helpful, which-key |
-| For Vim                       | Packages: evil-mode, evil-collection               |
-| Org                           | Packages: org-mode, org-agenda, org-bullets        |
-| Org font                      | Font: Comfortaa Light                              |
-| Programming/Scripting support | Packages: powershell, fish-mode, vimrc-mode        |
+| Package Manager               | use-package                                        |
+| Package Sources               | melpa.org, orgmode.org, elpa.gnu.org               |
+| Global font face              | Cascadia Code                                      |
+| Fixed/Variable font face      | Source Code                                        |
+| Theme                         | doom-theme                                         |
+| Modeline                      | doom-modeline                                      |
+| Dashboard                     | dashboard                                          |
+| Navigation and Help           | ivy, swiper, counsel, helpful, which-key           |
+| For Vim                       | evil-mode, evil-collection                         |
+| Org                           | org-mode, org-agenda, org-bullets                  |
+| Org font                      | Comfortaa Light                                    |
+| Programming/Scripting support | powershell, fish-mode, vimrc-mode        |
 | Line Numbering                | Relative [excluded in modes: org, term, eshell]    |
 |-------------------------------+----------------------------------------------------|
 
