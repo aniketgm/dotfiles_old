@@ -23,29 +23,33 @@ Configs:
   - source to ~.bash_aliases~ file
 
 ** Emacs
-File:
+Files:
 - ~init.el~ in ~/.emacs.d/
 - ~startup_logo_01.png~ for the dashboard package (check inside init.el)
 
 Configs:
-|-------------------------------+----------------------------------------------------|
-| Type                          | Package/Link/Font Name                             |
-|-------------------------------+----------------------------------------------------|
-| Package Manager               | use-package                                        |
-| Package Sources               | melpa.org, orgmode.org, elpa.gnu.org               |
-| Global font face              | Cascadia Code                                      |
-| Fixed/Variable font face      | Source Code                                        |
-| Theme                         | doom-theme                                         |
-| Modeline                      | doom-modeline                                      |
-| Dashboard                     | dashboard                                          |
-| Navigation and Help           | ivy, swiper, counsel, helpful, which-key           |
-| For Vim                       | evil-mode, evil-collection                         |
-| Org                           | org-mode, org-agenda, org-bullets                  |
-| Org font                      | Comfortaa Light                                    |
-| Programming/Scripting support | powershell, fish-mode, vimrc-mode        |
-| Line Numbering                | Relative [excluded in modes: org, term, eshell]    |
-|-------------------------------+----------------------------------------------------|
+|-------------------------------+-------------------------------------------------|
+| Type                          | Package/Link/Font Name                          |
+|-------------------------------+-------------------------------------------------|
+| Package Manager               | use-package                                     |
+| Package Sources               | melpa.org, orgmode.org, elpa.gnu.org            |
+| Global font face              | Cascadia Code                                   |
+| Fixed/Variable font face      | Source Code                                     |
+| Theme                         | doom-theme                                      |
+| Modeline                      | doom-modeline                                   |
+| Dashboard                     | dashboard                                       |
+| Navigation and Help           | ivy, swiper, counsel, helpful, which-key        |
+| For Vim                       | evil-mode, evil-collection                      |
+| Org                           | org-mode, org-agenda, org-bullets               |
+| Org font                      | Comfortaa Light                                 |
+| Programming/Scripting support | powershell, fish-mode, vimrc-mode               |
+| Line Numbering                | Relative [excluded in modes: org, term, eshell] |
+|-------------------------------+-------------------------------------------------|
 
 ** Fish
+Files:
+- ~config.fish~ in ~/.config/fish/
+- ~fish_prompt.fish~ in ~/.config/fish/functions/
+- =hydro.fish= in ~/.config/conf.d/
 
 ** Powershell
