@@ -3,8 +3,8 @@
 
 ** Vim configs
 Files:
-- .vimrc
-- plug.vim in ~/.vim/autoload
+- ~.vimrc~
+- ~plug.vim~ in ~/.vim/autoload
 
 Features:
 - Plugin manager : Vim-Plug
@@ -13,8 +13,8 @@ Features:
 
 ** Bash configs
 Files:
-- .bashrc
-- .bash_aliases
+- ~.bashrc~
+- ~.bash_aliases~
 
 ** Emacs configs
 
