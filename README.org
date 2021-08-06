@@ -1,23 +1,45 @@
 * Dotfiles
  This repo is a place for all my dotfiles.
 
-** Vim configs
+** Vim
 Files:
 - ~.vimrc~
-- ~plug.vim~ in ~/.vim/autoload
+- ~plug.vim~ in ~/.vim/autoload/
 
-Features:
+Configs:
 - Plugin manager : Vim-Plug
 - ColorScheme    : koehler
 - FileNavigation : NERDTree
+- For other configs check ~.vimrc~
 
-** Bash configs
+** Bash
 Files:
 - ~.bashrc~
 - ~.bash_aliases~
 
-** Emacs configs
+Configs:
+- ~.bashrc~,
+  - Sets some shell and history options
+  - source's ~.bash_aliases~ file
 
-** Fish configs
+** Emacs
+File:
+- ~init.el~ in ~/.emacs.d/
+- ~startup_logo_01.png~ for the dashboard package (check inside init.el)
 
-** Powershell configs
+Configs:
+|-----------------+---------------|
+| Feature         | Value         |
+|-----------------+---------------|
+| Package Manager | use-package   |
+| Package Sources | melpa.org     |
+|                 | orgmode.org   |
+|                 | elpa.gnu.org  |
+| Global font     | Cascadia Code |
+| Theme           | doom-theme    |
+| Modeline        | doom-modeline |
+|-----------------+---------------|
+
+** Fish
+
+** Powershell
