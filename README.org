@@ -2,8 +2,19 @@
  This repo is a place for all my dotfiles.
 
 ** Vim configs
+Files:
+- .vimrc
+- plug.vim in ~/.vim/autoload
+
+Features:
+- Plugin manager : Vim-Plug
+- ColorScheme    : koehler
+- FileNavigation : NERDTree
 
 ** Bash configs
+Files:
+- .bashrc
+- .bash_aliases
 
 ** Emacs configs
 

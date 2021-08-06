@@ -25,18 +25,6 @@
 ;; Set y-or-n option for yes-or-no questions
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Emacs startup dashboard
-(use-package dashboard
-  :ensure t
-  :diminish dashboard-mode
-  :config
-  (setq dashboard-banner-logo-title "Santoryu!")
-  (setq dashboard-startup-banner "~/.emacs.d/startup_logo_01.png")
-  (dashboard-setup-startup-hook))
-
-(set-frame-parameter (selected-frame) 'alpha '(92 . 80))
-(add-to-list 'default-frame-alist '(alpha . (92 . 80)))
-
 ;; Package sources --------------------------------------------------------
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -64,7 +52,7 @@
 		eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Custom Themes, Face, Fonts, Modeline -----------------------------------
+;; Custom Themes, Face, Fonts, Modeline, Dashboard ------------------------
 (set-face-attribute 'default nil :font "Cascadia Code PL SemiLight" :height 115)
 
 ;; Set the fixed pitch face
@@ -82,6 +70,18 @@
 (use-package doom-themes
   :ensure t
   :init (load-theme 'doom-Iosvkem t))
+
+;; Emacs startup dashboard
+(use-package dashboard
+  :ensure t
+  :diminish dashboard-mode
+  :config
+  (setq dashboard-banner-logo-title "Santoryu!")
+  (setq dashboard-startup-banner "~/.emacs.d/startup_logo_01.png")
+  (dashboard-setup-startup-hook))
+
+(set-frame-parameter (selected-frame) 'alpha '(92 . 80))
+(add-to-list 'default-frame-alist '(alpha . (92 . 80)))
 
 ;; Fancy Search, Switch buffer, and other stuff --------------------------
 (use-package ivy
