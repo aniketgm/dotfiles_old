@@ -50,6 +50,21 @@ Configs:
 Files:
 - ~config.fish~ in ~/.config/fish/
 - ~fish_prompt.fish~ in ~/.config/fish/functions/
-- =hydro.fish= in ~/.config/conf.d/
+- ~hydro.fish~ in ~/.config/conf.d/
+
+Configs:
+- ~config.fish~ contains:
+  - PATH Env variable modification
+  - Abbreviations
+  - Functions for,
+    1. dotfiles source control
+    2. google searching and opening weblinks
+    3. add, commit and push operations of git
 
 ** Powershell
+Files:
+- ~Microsoft.Powershell_profile.ps1~
+- ~Scripts~ folder containing ps1 scripts
+
+Configs:
+- Theme by 'oh-my-posh': Emodipt
