@@ -28,17 +28,15 @@ File:
 - ~startup_logo_01.png~ for the dashboard package (check inside init.el)
 
 Configs:
-|-----------------+---------------|
-| Feature         | Value         |
-|-----------------+---------------|
-| Package Manager | use-package   |
-| Package Sources | melpa.org     |
-|                 | orgmode.org   |
-|                 | elpa.gnu.org  |
-| Global font     | Cascadia Code |
-| Theme           | doom-theme    |
-| Modeline        | doom-modeline |
-|-----------------+---------------|
+|-----------------+--------------------------------------|
+| Feature         | Value                                |
+|-----------------+--------------------------------------|
+| Package Manager | use-package                          |
+| Package Sources | melpa.org, orgmode.org, elpa.gnu.org |
+| Global font     | Cascadia Code                        |
+| Theme           | doom-theme                           |
+| Modeline        | doom-modeline                        |
+|-----------------+--------------------------------------|
 
 ** Fish
 
