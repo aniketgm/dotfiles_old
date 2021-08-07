@@ -3,7 +3,7 @@
 
 ** Vim
 
-| Files:                         | Configs:                         |
+| :Files                        | :Configs                        |
 |--------------------------------+----------------------------------|
 | + ~.vimrc~                       | + Plugin manager : Vim-Plug      |
 | + ~plug.vim~ in ~/.vim/autoload/ | + ColorScheme    : koehler       |
