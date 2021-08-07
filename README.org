@@ -47,10 +47,11 @@ Configs:
 ** Fish
 
 |----------------------------------------------+---------------------------------------------------------|
-| Files                                        | Configs                                                 |
-| ~config.fish~ in $HOME/.config/fish/functions  | ~config.fish~ contains:                                   |
+| Files <l>                                    | Configs                                                 |
+|----------------------------------------------+---------------------------------------------------------|
+| ~config.fish~ in $HOME/.config/fish            | ~config.fish~ contains:                                   |
 | ~fish_prompt.fish~ in ~/.config/fish/functions | - PATH Env variable modification                        |
-| ~hydro.fish~ in ~/.config/conf.d/              | - Abbreviations                                         |
+| ~hydro.fish~ in ~/.config/conf.d               | - Abbreviations                                         |
 |                                              | - Functions for,                                        |
 |                                              | - 1. dotfiles source control                            |
 |                                              | - 2. google searching and opening weblinks              |
