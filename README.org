@@ -21,6 +21,7 @@
 |---------------+-----------------------------------|
 
 ** Emacs
+
 Files:
 - ~init.el~ in ~/.emacs.d/
 - ~startup_logo_01.png~ for the dashboard package (check inside init.el)
@@ -47,8 +48,7 @@ Configs:
 ** Fish
 
 |----------------------------------------------+---------------------------------------------------------|
-| Files <l>                                    | Configs                                                 |
-|----------------------------------------------+---------------------------------------------------------|
+| Files                                        | Configs                                                 |
 | ~config.fish~ in $HOME/.config/fish            | ~config.fish~ contains:                                   |
 | ~fish_prompt.fish~ in ~/.config/fish/functions | - PATH Env variable modification                        |
 | ~hydro.fish~ in ~/.config/conf.d               | - Abbreviations                                         |
@@ -62,9 +62,9 @@ Configs:
 |----------------------------------------------+---------------------------------------------------------|
 
 ** Powershell
-Files:
-- ~Microsoft.Powershell_profile.ps1~
-- ~Scripts~ folder containing ps1 scripts
 
-Configs:
-- Theme by 'oh-my-posh': Emodipt
+|---------------------------------------+--------------------------------|
+| Files                                 | Configs                        |
+| ~Microsoft.Powershell_profile.ps1~      | Theme by 'oh-my-posh': Emodipt |
+| ~Scripts~ folder containing ps1 scripts |                                |
+|---------------------------------------+--------------------------------|
