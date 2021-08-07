@@ -57,7 +57,7 @@ Configs:
 |                                              | - 3. add, commit and push operations of git          |
 |                                              | ~fish_prompt.fish~ contains customized hydro prompt    |
 |                                              | ~hydro.fish~ is customized on top of the original file |
-|                                              | from jorgebucaran's hydro repo.                      |
+|                                              | from jorgebucarans hydro repo.                       |
 |----------------------------------------------+------------------------------------------------------|
 
 ** Powershell
