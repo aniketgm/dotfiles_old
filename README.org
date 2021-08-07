@@ -46,20 +46,20 @@ Configs:
 
 ** Fish
 
-|------------------------------------------------+---------------------------------------------|
-| Files                                          | Configs                                     |
-| ~config.fish~ in ~/.config/fish/                 | ~config.fish~ contains:                       |
-| fish_prompt.fish~ in ~/.config/fish/functions/ | - PATH Env variable modification            |
-| ~hydro.fish~ in ~/.config/conf.d/                | - Abbreviations                             |
-|                                                | - Functions for,                            |
-|                                                | - 1. dotfiles source control                |
-|                                                | - 2. google searching and opening weblinks  |
-|                                                | - 3. add, commit and push operations of git |
-|                                                | ~fish_prompt.fish~ contains customized hydro  |
-|                                                | prompt.                                     |
-|                                                | ~hydro.fish~ is customized on top of the      |
-|                                                | original file from jorgebucaran/hydro       |
-|------------------------------------------------+---------------------------------------------|
+|-----------------------------------------------+---------------------------------------------|
+| Files                                         | Configs                                     |
+| ~config.fish~ in ~/.config/fish/                | ~config.fish~ contains:                       |
+| ~fish_prompt.fish~ in ~/.config/fish/functions/ | - PATH Env variable modification            |
+| ~hydro.fish~ in ~/.config/conf.d/               | - Abbreviations                             |
+|                                               | - Functions for,                            |
+|                                               | - 1. dotfiles source control                |
+|                                               | - 2. google searching and opening weblinks  |
+|                                               | - 3. add, commit and push operations of git |
+|                                               | ~fish_prompt.fish~ contains customized hydro  |
+|                                               | prompt.                                     |
+|                                               | ~hydro.fish~ is customized on top of the      |
+|                                               | original file from jorgebucaran/hydro       |
+|-----------------------------------------------+---------------------------------------------|
 
 
 ** Powershell
