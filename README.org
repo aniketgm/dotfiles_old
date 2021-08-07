@@ -3,13 +3,13 @@
 
 ** Vim
 
-| Files                            | Configs                            |
-| :------------------------------- | :--------------------------------- |
-| + ~.vimrc~                         | + Plugin manager : Vim-Plug        |
-| + ~plug.vim~ in ~/.vim/autoload/   | + ColorScheme    : koehler         |
-|                                  | + FileNavigation : NERDTree        |
-|                                  | + For other configs check ~.vimrc~   |
-|----------------------------------+------------------------------------|
+|--------------------------------+----------------------------------|
+| Files                          | Configs                          |
+| + ~.vimrc~                       | + Plugin manager : Vim-Plug      |
+| + ~plug.vim~ in ~/.vim/autoload/ | + ColorScheme    : koehler       |
+|                                | + FileNavigation : NERDTree      |
+|                                | + For other configs check ~.vimrc~ |
+|--------------------------------+----------------------------------|
 
 ** Bash
 Files:
