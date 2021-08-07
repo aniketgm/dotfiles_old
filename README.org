@@ -3,23 +3,22 @@
 
 ** Vim
 
-|--------------------------------+----------------------------------|
-| Files                          | Configs                          |
-| + ~.vimrc~                       | + Plugin manager : Vim-Plug      |
-| + ~plug.vim~ in ~/.vim/autoload/ | + ColorScheme    : koehler       |
-|                                | + FileNavigation : NERDTree      |
-|                                | + For other configs check ~.vimrc~ |
-|--------------------------------+----------------------------------|
+|------------------------------+--------------------------------|
+| Files                        | Configs                        |
+| ~.vimrc~                       | Plugin manager : Vim-Plug      |
+| ~plug.vim~ in ~/.vim/autoload/ | ColorScheme    : koehler       |
+|                              | FileNavigation : NERDTree      |
+|                              | For other configs check ~.vimrc~ |
+|------------------------------+--------------------------------|
 
 ** Bash
-Files:
-- ~.bashrc~
-- ~.bash_aliases~
 
-Configs:
-- ~.bashrc~ contains
-  - Some shell and history options
-  - source to ~.bash_aliases~ file
+|---------------+-----------------------------------|
+| Files         | Configs                           |
+| ~.bashrc~       | ~.bashrc~ contains                  |
+| ~.bash_aliases~ | -- Some shell and history options |
+|               | -- source to ~.bash_aliases~ file   |
+|---------------+-----------------------------------|
 
 ** Emacs
 Files:
@@ -46,19 +45,22 @@ Configs:
 |-------------------------------+-------------------------------------------------|
 
 ** Fish
-Files:
-- ~config.fish~ in ~/.config/fish/
-- ~fish_prompt.fish~ in ~/.config/fish/functions/
-- ~hydro.fish~ in ~/.config/conf.d/
 
-Configs:
-- ~config.fish~ contains:
-  - PATH Env variable modification
-  - Abbreviations
-  - Functions for,
-    1. dotfiles source control
-    2. google searching and opening weblinks
-    3. add, commit and push operations of git
+|------------------------------------------------+---------------------------------------------|
+| Files                                          | Configs                                     |
+| ~config.fish~ in ~/.config/fish/                 | ~config.fish~ contains:                       |
+| fish_prompt.fish~ in ~/.config/fish/functions/ | - PATH Env variable modification            |
+| ~hydro.fish~ in ~/.config/conf.d/                | - Abbreviations                             |
+|                                                | - Functions for,                            |
+|                                                | - 1. dotfiles source control                |
+|                                                | - 2. google searching and opening weblinks  |
+|                                                | - 3. add, commit and push operations of git |
+|                                                | ~fish_prompt.fish~ contains customized hydro  |
+|                                                | prompt.                                     |
+|                                                | ~hydro.fish~ is customized on top of the      |
+|                                                | original file from jorgebucaran/hydro       |
+|------------------------------------------------+---------------------------------------------|
+
 
 ** Powershell
 Files:
