@@ -48,7 +48,7 @@ Configs:
 
 |-----------------------------------------------+---------------------------------------------|
 | Files                                         | Configs                                     |
-| ~config.fish~ in ~/.config/fish/                | ~config.fish~ contains:                       |
+| ~config.fish~ in =~/.config/fish/=                | ~config.fish~ contains:                       |
 | ~fish_prompt.fish~ in ~/.config/fish/functions/ | - PATH Env variable modification            |
 | ~hydro.fish~ in ~/.config/conf.d/               | - Abbreviations                             |
 |                                               | - Functions for,                            |
