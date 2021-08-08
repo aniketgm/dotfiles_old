@@ -251,7 +251,7 @@
   (setq org-log-into-drawer t)
 
   (setq org-agenda-files
-	'("~/orgdata/Tasks.org"))
+	'("~/.emacs.d/org_files/Tasks.org"))
 
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "DOING(g)" "PAUSED(u@)" "|" "DONE(d!)")
@@ -336,7 +336,7 @@
   ;;(org-bullets-bullet-list '("❂" "⊛" "☉" "◎" "◉" "●")))
 
 (defun agm/org-mode-visual-fill ()
-  (setq visual-fill-column-width 110
+  (setq visual-fill-column-width 120
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 

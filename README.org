@@ -13,12 +13,12 @@
 
 ** Bash
 
-|---------------+-----------------------------------|
-| Files         | Configs                           |
-| ~.bashrc~       | ~.bashrc~ contains                  |
-| ~.bash_aliases~ | -- Some shell and history options |
-|               | -- source to ~.bash_aliases~ file   |
-|---------------+-----------------------------------|
+|---------------+----------------------------------|
+| Files         | Configs                          |
+| ~.bashrc~       | ~.bashrc~ contains                 |
+| ~.bash_aliases~ | - Some shell and history options |
+|               | - Source to ~.bash_aliases~ file   |
+|---------------+----------------------------------|
 
 ** Emacs
 
