@@ -251,7 +251,7 @@
   (setq org-log-into-drawer t)
 
   (setq org-agenda-files
-	'("~/.emacs.d/org_files/Tasks.org"))
+	'("~/.emacs.d/org-files/Tasks.org"))
 
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "DOING(g)" "PAUSED(u@)" "|" "DONE(d!)")
