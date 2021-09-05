@@ -9,6 +9,8 @@
 ;;   /              \  \  /  /                    \   Github Repo : https://github.com/aniketgm/dotfiles
 ;;  /__            __\  \/  /__                  __\
 
+;; Basic UI and Miscellaneous settings ------------------------------------
+
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)	; Disable visible scrollbar
@@ -16,14 +18,35 @@
 (tooltip-mode -1)	; Disable tooltips
 (set-fringe-mode 10)	; Give some breathing room
 (menu-bar-mode -1)	; Disable menubar
-
 (setq visible-bell t)	; Set visible bell
+
+;; Display 24 hour time and day of week in modeline
+(setq display-time-format "%H:%M %a"
+      display-time-default-load-average nil)
+(display-time-mode t)
+
+;; Set Tab indent as 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 ;; Set ESC as quit prompt
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Set y-or-n option for yes-or-no questions
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Ask user and create directory if it doesn't exist
+(defun make-non-existent-dir ()
+  (let ((parent-dir (file-name-directory buffer-file-name)))
+    (when (and (not (file-exists-p parent-dir))
+               (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-dir)))
+      (make-directory parent-dir t))))
+
+(add-to-list 'find-file-not-found-functions #'make-non-existent-dir)
+
+;; Make no backup files
+(setq make-backup-files nil)
 
 ;; Package sources --------------------------------------------------------
 (require 'package)
@@ -44,7 +67,8 @@
 ;; Line and Column number settings ----------------------------------------
 (column-number-mode)
 (global-display-line-numbers-mode t)
-(menu-bar-display-line-numbers-mode 'relative)
+;; (menu-bar-display-line-numbers-mode 'relative)
+(setq display-line-numbers-type 'relative)
 
 ;; Display line numbers for some modes
 (dolist (mode '(org-mode-hook
@@ -195,7 +219,8 @@
   ("C-c p" . projectile-command-map)
   :init
   (when (file-directory-p "/cygdrive/d/Learning/GithubRepos")
-    (setq projectile-project-search-path '("/cygdrive/d/Learning/GithubRepos")))
+    (setq projectile-project-search-path '("/cygdrive/d/Learning/GithubRepos"
+                                           "/cygdrive/d/Learning/Python/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
@@ -244,14 +269,19 @@
   :config
   (setq org-ellipsis " ▾"
 	org-hide-emphasis-markers t)
-
   (setq org-agenda-start-with-log-mode t)
   (setq org-agenda-start-on-weekday 0)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+  (setq org-clock-sound "~/.emacs.d/bells/bell-02.wav")
 
   (setq org-agenda-files
-	'("~/.emacs.d/org-files/Tasks.org"))
+	'("~/.emacs.d/org-files/Tasks.org"
+	  "~/.emacs.d/org-files/Habits.org"))
+
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
 
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "DOING(g)" "PAUSED(u@)" "|" "DONE(d!)")
@@ -266,6 +296,12 @@
 	  ("CANCELLED" . "red")
 	  ("BACKLOG" . "magenta")))
 
+  (setq org-refile-targets
+	'(("~/.emacs.d/org-files/Archive.org" :maxlevel . 1)))
+
+  ;; Save Org buffers after refiling
+  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+  
   (setq org-tag-alist
 	'((:startgroup)
 	  ; Put mutually exclusive tags here
@@ -275,7 +311,6 @@
 	  ("agenda" . ?a)
 	  ("planning" . ?p)
 	  ("publish" . ?P)
-	  ("batch" . ?b)
 	  ("note" . ?n)
 	  ("idea" . ?i)))
    
@@ -326,7 +361,36 @@
       (todo "CANCELLED"
             ((org-agenda-overriding-header "Cancelled Projects")
              (org-agenda-files org-agenda-files)))))))
-   
+
+  (setq org-capture-templates
+    `(("t" "Tasks / Projects")
+      ("tt" "Task" entry (file+olp "~/.emacs.d/org-files/Tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+
+      ("j" "Journal Entries")
+      ("jj" "Journal" entry
+           (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+           :clock-in :clock-resume
+           :empty-lines 1)
+      ("jm" "Meeting" entry
+           (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 1)
+
+      ("w" "Workflows")
+      ("we" "Checking Email" entry (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+
+      ("m" "Metrics Capture")
+      ("mw" "Weight" table-line (file+headline "~/.emacs.d/org-files/Metrics.org" "Weight")
+       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+
+  (define-key global-map (kbd "C-c c")
+    (lambda () (interactive) (org-capture)))
+  
   (agm/org-font-setup))
 
 (use-package org-bullets
@@ -343,10 +407,28 @@
 (use-package visual-fill-column
   :hook (org-mode . agm/org-mode-visual-fill))
 
+;; Org Babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (python . t)))
+
+(setq org-confirm-babel-evaluate nil)
+
+;; Structure Templates
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+
 ;; Programming and Scripting language packages ----------------------------
 (use-package powershell)
 (use-package fish-mode)
 (use-package vimrc-mode)
+(use-package emmet-mode
+  :hook ((html-mode css-mode) . emmet-mode))
+(use-package dockerfile-mode
+  :ensure t)
 
 ;; Automatically added by Custom ------------------------------------------
 (custom-set-variables
@@ -355,7 +437,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
+   '(dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
