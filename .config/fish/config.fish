@@ -24,7 +24,7 @@ abbr cdl 'cd /cygdrive/d/Learning'
 abbr cgo 'cd /cygdrive/d/Learning/Go'
 abbr cja 'cd /cygdrive/d/Learning/JavaScript'
 abbr cpy 'cd /cygdrive/d/Learning/Python'
-abbr cmb 'cd /cygdrive/d/Learning/Python/LearningFlask/microblog'
+abbr cmb 'cd /cygdrive/d/Learning/Python/Flask/microblog'
 abbr cwb 'cd /cygdrive/d/Learning/WebDevelopment'
 abbr cgh 'cd /cygdrive/d/Learning/GithubRepos'
 
@@ -51,13 +51,36 @@ abbr ~ 'cd ~'
 abbr gs 'git status'
 abbr gb 'git branch'
 
+# Docker abbreviations
+abbr dk 'docker'
+abbr dkp 'docker ps -a'
+abbr dki 'docker images'
+abbr dkr 'docker run -p 8080:8080'
+abbr dke 'docker exec'
+abbr dkd 'docker rm'
+
 # --- Functions ---
 
+# docker show status of all entities: images, containers, volumes
+function dkls
+    if type -q docker
+        echo "# Docker Images:"
+        docker images
+        echo ""
+        echo "# Docker Containers:"
+        docker ps -a
+        echo ""
+        echo "# Docker Volumes:"
+        docker volume ls
+    end
+end
+
 # Abbreviation for managing dotfiles
-function dft
+function dtf
     git --git-dir=$HOME/dotfiles --work-tree=$HOME $argv
 end
 
+# Python env activate for fish shell
 function penv
     set PY_ENV_FILE (find -type f -iname "activate.fish")
     source $PY_ENV_FILE
