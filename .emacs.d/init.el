@@ -274,10 +274,10 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-clock-sound "~/.emacs.d/bells/bell-02.wav")
+  (setq org-image-actual-width nil)
 
   (setq org-agenda-files
-	'("~/.emacs.d/org-files/Tasks.org"
-	  "~/.emacs.d/org-files/Habits.org"))
+	'("~/.emacs.d/org-files/Tasks.org"))
 
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
@@ -400,7 +400,7 @@
   ;;(org-bullets-bullet-list '("❂" "⊛" "☉" "◎" "◉" "●")))
 
 (defun agm/org-mode-visual-fill ()
-  (setq visual-fill-column-width 120
+  (setq visual-fill-column-width 150
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
