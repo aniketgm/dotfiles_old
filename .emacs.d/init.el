@@ -51,8 +51,9 @@
 ;; Package sources --------------------------------------------------------
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("stable-melpa" . "https://stable.melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (unless package-archive-contents
@@ -421,6 +422,11 @@
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
+;; Org Tree Slide for presentations
+;;(use-package org-tree-slide
+;;  :custom
+;;  (org-image-actual-width nil))
+
 ;; Programming and Scripting language packages ----------------------------
 (use-package powershell)
 (use-package fish-mode)
@@ -437,7 +443,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
+   '(doom-modeline dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
