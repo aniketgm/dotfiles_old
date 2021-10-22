@@ -13,12 +13,12 @@
 
 (setq inhibit-startup-message t)
 
-(scroll-bar-mode -1)	; Disable visible scrollbar
-(tool-bar-mode -1)	; Disable toolbar
-(tooltip-mode -1)	; Disable tooltips
-(set-fringe-mode 10)	; Give some breathing room
-(menu-bar-mode -1)	; Disable menubar
-(setq visible-bell t)	; Set visible bell
+(scroll-bar-mode -1)     ; Disable visible scrollbar
+(tool-bar-mode -1)       ; Disable toolbar
+(tooltip-mode -1)        ; Disable tooltips
+(set-fringe-mode 10)     ; Give some breathing room
+(menu-bar-mode -1)       ; Disable menubar
+(setq visible-bell t)    ; Set visible bell
 
 ;; Display 24 hour time and day of week in modeline
 (setq display-time-format "%H:%M %a"
@@ -423,9 +423,9 @@
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
 ;; Org Tree Slide for presentations
-;;(use-package org-tree-slide
-;;  :custom
-;;  (org-image-actual-width nil))
+(use-package org-tree-slide
+  :custom
+  (org-image-actual-width nil))
 
 ;; Programming and Scripting language packages ----------------------------
 (use-package powershell)
@@ -443,7 +443,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-modeline dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
+   '(org-tree-slide doom-modeline dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
