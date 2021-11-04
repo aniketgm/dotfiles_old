@@ -35,8 +35,8 @@ Else { Write-Output "Chocolatey is not installed ..." }
 # ---------
 function .. { Set-Location .. }
 function assoc { CMD /C "assoc $args" }
-function cmdr  { Set-Location $Env:CMDER_ROOT }
 function ftype { CMD /C "ftype $args" }
+function cmdr  { Set-Location $Env:CMDER_ROOT }
 function gca($CmdName) { (Get-Command $CmdName).Parameters.Values | Select Name, Aliases }
 function hist  { cat (Get-PSReadLineOption).HistorySavePath }
 function phead([Int]$Lines=10){ $Input | Select -First $Lines }

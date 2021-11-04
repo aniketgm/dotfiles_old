@@ -12,26 +12,25 @@
 
 set fish_greeting
 set PATH '~/bin' $PATH
-set PATH '/cygdrive/c/Program Files/MongoDB/Server/4.4/bin/' $PATH
-set PATH '/cygdrive/c/Program Files/Docker/Docker/' $PATH
-set -x WIN_HOME '/cygdrive/c/Users/eo5ayt'
-set -x BROWSER '/home/eo5ayt/bin/opera'
+set -x WINHOME '/cygdrive/c/Users/Aniket'
+set -x BROWSER '/home/Aniket/bin/opera'
+set -x WINDSUM '/cygdrive/d/SummuData'
 
 # --- Abbreviations ---
 
 # Learning directory abbreviations
-abbr cdl 'cd /cygdrive/d/Learning'
-abbr cgo 'cd /cygdrive/d/Learning/Go'
-abbr cja 'cd /cygdrive/d/Learning/JavaScript'
-abbr cpy 'cd /cygdrive/d/Learning/Python'
-abbr cmb 'cd /cygdrive/d/Learning/Python/Flask/microblog'
-abbr cwb 'cd /cygdrive/d/Learning/WebDevelopment'
-abbr cgh 'cd /cygdrive/d/Learning/GithubRepos'
+abbr cds 'cd /cygdrive/d/SummuData'
+abbr cdl 'cd /cygdrive/d/SummuData/Learning'
+abbr cgo 'cd /cygdrive/d/SummuData/Learning/Go'
+abbr cja 'cd /cygdrive/d/SummuData/Learning/JavaScript'
+abbr cpy 'cd /cygdrive/d/SummuData/Learning/Python'
+abbr cmb 'cd /cygdrive/d/SummuData/Learning/Python/Flask/microblog'
+abbr cwb 'cd /cygdrive/d/SummuData/Learning/WebDevelopment'
+abbr cgh 'cd /cygdrive/d/SummuData/Learning/GithubRepos'
 
 # Other abbreviations
 abbr cls 'clear'
 abbr cp 'cp -v'
-abbr ent 'cd /cygdrive/c/Users/eo5ayt/Documents/MyData/Entertainment'
 abbr fm 'ranger'
 abbr md 'mkdir -vp'
 abbr mv 'mv -v'
@@ -131,7 +130,8 @@ end
 
 # Open emacs in fullscreen mode.
 function ef
-    emacs -fs $argv &
+    $WINHOME/Downloads/emacs-27.2-x86_64/bin/runemacs.exe -fs $argv &
+    # emacs -fs $argv &
 end
 
 # GIT function to add and commit
