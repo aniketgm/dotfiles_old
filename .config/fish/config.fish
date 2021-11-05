@@ -10,8 +10,8 @@
 #  /__            __\  \/  /__                  __\
 #
 
-set fish_greeting
-set PATH '~/bin' $PATH
+#set fish_greeting (fortune | cowsay -f tux)
+set PATH '/home/Aniket/bin' $PATH
 set -x WINHOME '/cygdrive/c/Users/Aniket'
 set -x BROWSER '/home/Aniket/bin/opera'
 set -x WINDSUM '/cygdrive/d/SummuData'
@@ -43,7 +43,7 @@ abbr vc 'vim ~/.config/fish/config.fish'
 abbr vd 'vimdiff'
 abbr vp 'vim ~/.config/fish/functions/fish_prompt.fish'
 abbr vrc 'vim ~/.vimrc'
-abbr vw 'view'
+abbr vw 'vim -R'
 abbr ~ 'cd ~'
 
 # GIT abbreviations
@@ -59,6 +59,28 @@ abbr dke 'docker exec'
 abbr dkd 'docker rm'
 
 # --- Functions ---
+
+# custom fish greetings
+function fish_greeting
+    #if begin type -q fortune; and type -q cowsay; end
+    #    fortune | cowsay -f tux
+    if type -q winfetch.bat
+        winfetch.bat
+    else
+        echo "              __________________                                                                                           "
+        echo "          /\  \   __           /  /\    /\         Your work is going to fill a large part of your life,                   "
+        echo "         /  \  \  \         __/  /  \  /  \        and the only way to be truly satisfied is to do what you believe        "
+        echo "        /    \  \       _____   /    \/    \       is great work. And the only way to do great work is to love what you do."
+        echo "       /  /\  \  \     /    /  /            \      If you haven’t found it yet Keep Looking. Don't settle.                 "
+        echo "      /        \  \        /  /      \/      \     As with all matters of the heart, you’ll know when you find it.         "
+        echo "     /          \  \      /  /                \                                                                            "
+        echo "    /            \  \    /  /                  \                                                              — Steve Jobs "
+        echo "   /              \  \  /  /                    \                                                                          "
+        echo "  /__            __\  \/  /__                  __\                                                                         "
+        echo ""
+    end
+end
+
 
 # docker show status of all entities: images, containers, volumes
 function dkls

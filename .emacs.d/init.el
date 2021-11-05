@@ -1,16 +1,3 @@
-;;              __________________          
-;;          /\  \   __           /  /\    /\          Author      : Aniket Meshram
-;;         /  \  \  \         __/  /  \  /  \
-;;        /    \  \       _____   /    \/    \        Description : Contains emacs startup configurations
-;;       /  /\  \  \     /    /  /            \                     which is customized on top of init.el
-;;      /        \  \        /  /      \/      \                    by David Wilson. Thanks David !!
-;;     /          \  \      /  /                \                   (https://github.com/daviwil/)
-;;    /            \  \    /  /                  \
-;;   /              \  \  /  /                    \   Github Repo : https://github.com/aniketgm/dotfiles
-;;  /__            __\  \/  /__                  __\
-
-;; Basic UI and Miscellaneous settings ------------------------------------
-
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)     ; Disable visible scrollbar
@@ -33,51 +20,18 @@
 ;; Set ESC as quit prompt
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Set y-or-n option for yes-or-no questions
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; Ask user and create directory if it doesn't exist
-(defun make-non-existent-dir ()
-  (let ((parent-dir (file-name-directory buffer-file-name)))
-    (when (and (not (file-exists-p parent-dir))
-               (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-dir)))
-      (make-directory parent-dir t))))
-
-(add-to-list 'find-file-not-found-functions #'make-non-existent-dir)
-
-;; Make no backup files
-(setq make-backup-files nil)
-
-;; Package sources --------------------------------------------------------
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("stable-melpa" . "https://stable.melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
-;; Line and Column number settings ----------------------------------------
 (column-number-mode)
 (global-display-line-numbers-mode t)
+
 ;; (menu-bar-display-line-numbers-mode 'relative)
 (setq display-line-numbers-type 'relative)
 
 ;; Display line numbers for some modes
 (dolist (mode '(org-mode-hook
-		term-mode-hook
-		eshell-mode-hook))
+        term-mode-hook
+        eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Custom Themes, Face, Fonts, Modeline, Dashboard ------------------------
 (set-face-attribute 'default nil :font "Cascadia Code PL SemiLight" :height 115)
 
 ;; Set the fixed pitch face
@@ -108,7 +62,37 @@
 (set-frame-parameter (selected-frame) 'alpha '(92 . 80))
 (add-to-list 'default-frame-alist '(alpha . (92 . 80)))
 
-;; Fancy Search, Switch buffer, and other stuff --------------------------
+;; Set y-or-n option for yes-or-no questions
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Ask user and create directory if it doesn't exist
+(defun make-non-existent-dir ()
+  (let ((parent-dir (file-name-directory buffer-file-name)))
+    (when (and (not (file-exists-p parent-dir))
+               (y-or-n-p (format "Directory `%s' does not exist! Create it?" parent-dir)))
+      (make-directory parent-dir t))))
+
+(add-to-list 'find-file-not-found-functions #'make-non-existent-dir)
+
+;; Make no backup files
+(setq make-backup-files nil)
+
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("stable-melpa" . "https://stable.melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
 (use-package ivy
   :diminish
   :bind (:map ivy-minibuffer-map
@@ -127,28 +111,25 @@
   :config
   (ivy-mode 1))
 
+(use-package ivy-rich
+  :config
+  (ivy-rich-mode 1))
+
 (use-package swiper
   :bind ("C-s" . swiper))
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config (setq which-key-idle-delay 0.3))
 
-(use-package ivy-rich
-  :config
-  (ivy-rich-mode 1))
-
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x f" . counsel-recentf)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . counsel-minibuffer-history))
+     ("C-x b" . counsel-ibuffer)
+     ("C-x f" . counsel-recentf)
+     ("C-x C-f" . counsel-find-file)
+     :map minibuffer-local-map
+     ("C-r" . counsel-minibuffer-history))
   :config
   (setq ivy-initial-inputs-alist nil)) ;; Don't start searches with ^
 
@@ -162,17 +143,16 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-;; Evil mode stuff --------------------------------------------------------
 (defun rune/evil-hook ()
   (dolist (mode '(custom-mode
-		  eshell-mode
-		  git-rebase-mode
-		  erc-mode
-		  circle-server-mode
-		  circle-chat-mode
-		  circle-query-mode
-		  sauron-mode
-		  term-mode))
+          eshell-mode
+          git-rebase-mode
+          erc-mode
+          circle-server-mode
+          circle-chat-mode
+          circle-query-mode
+          sauron-mode
+          term-mode))
     (add-to-list 'evil-emacs-state-modes mode)))
 
 (use-package evil
@@ -198,19 +178,17 @@
   :config
   (evil-collection-init))
 
-;; This allows to set key-bindings outside of the defined package
 (use-package general
   :config
   (general-create-definer rune/leader-keys
-			  :keymaps '(normal insert visual emacs)
-			  :prefix "SPC"
-			  :global-prefix "C-SPC")
+              :keymaps '(normal insert visual emacs)
+              :prefix "SPC"
+              :global-prefix "C-SPC")
 
   (rune/leader-keys
    "t"  '(:ignore t :which-key "toggles")
    "tt" '(counsel-load-theme :which-key "choose theme")))
 
-;; Code Project Management [Projectile and Magit] -------------------------
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -230,9 +208,9 @@
 
 (use-package magit
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function
+   #'magit-display-buffer-same-window-except-diff-v1))
 
-;; Org Mode ---------------------------------------------------------------
 (defun agm/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -242,34 +220,33 @@
 (defun agm/org-font-setup ()
   ;; Replace hyphens in list with dot
   (font-lock-add-keywords 'org-mode
-  			'(("^ *\\([-]\\) "
-  			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "∙"))))))
-  
-  ;(require 'org-faces)
-  (dolist (face '((org-level-1 . 1.4)
-  	          (org-level-2 . 1.25)
-  	          (org-level-3 . 1.2)
-  	          (org-level-4 . 1.15)
-  	          (org-level-5 . 1.1)
-  	          (org-level-6 . 1.05)
-  	          (org-level-7 . 1.0)
-  	          (org-level-8 . 1.0)))
-    (set-face-attribute (car face) nil :font "Comfortaa Light" :weight 'regular :height (cdr face)))
-  
-  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch))
+            '(("^ *\\([-]\\) "
+               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "∙"))))))
+
+(dolist (face '((org-level-1 . 1.35)
+                (org-level-2 . 1.15)
+                (org-level-3 . 1.1)
+                (org-level-4 . 1.05)
+                (org-level-5 . 1.05)
+                (org-level-6 . 1.0)
+                (org-level-7 . 1.0)
+                (org-level-8 . 1.0)))
+  (set-face-attribute (car face) nil :font "Comfortaa Light" :weight 'regular :height (cdr face)))
+
+;; Ensure that anything that should be fixed-pitch in Org files appears that way
+(set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch))
 
 (use-package org
   :hook (org-mode . agm/org-mode-setup)
   :config
   (setq org-ellipsis " ▾"
-	org-hide-emphasis-markers t)
+    org-hide-emphasis-markers t)
   (setq org-agenda-start-with-log-mode t)
   (setq org-agenda-start-on-weekday 0)
   (setq org-log-done 'time)
@@ -277,127 +254,127 @@
   (setq org-clock-sound "~/.emacs.d/bells/bell-02.wav")
   (setq org-image-actual-width nil)
 
-  (setq org-agenda-files
-	'("~/.emacs.d/org-files/Tasks.org"))
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "NEXT(n)" "DOING(g)" "PAUSED(u@)" "|" "DONE(d!)")
+    (sequence "BACKLOG(b)" "PLANNING(p)" "READY(r)" "IN-PROGRESS(i)" "REVIEW(v)" "WAITING(w@/!)" "|" "COMPLETED(c)" "CANCELLED(k@)")))
 
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60)
+(setq org-todo-keyword-faces
+  '(("TODO" . "magenta")
+    ("NEXT" . "yellow")
+    ("DOING" . "palegreen")
+    ("PAUSED" . "orange")
+    ("DONE" . "green")
+    ("CANCELLED" . "red")
+    ("BACKLOG" . "magenta")))
 
-  (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "DOING(g)" "PAUSED(u@)" "|" "DONE(d!)")
-	  (sequence "BACKLOG(b)" "PLANNING(p)" "READY(r)" "IN-PROGRESS(i)" "REVIEW(v)" "WAITING(w@/!)" "|" "COMPLETED(c)" "CANCELLED(k@)")))
+(setq org-agenda-files
+  '("~/.emacs.d/org-files/Tasks.org"))
 
-  (setq org-todo-keyword-faces
-	'(("TODO" . "magenta")
-	  ("NEXT" . "yellow")
-	  ("DOING" . "palegreen")
-	  ("PAUSED" . "orange")
-	  ("DONE" . "green")
-	  ("CANCELLED" . "red")
-	  ("BACKLOG" . "magenta")))
+;; Configure custom agenda views
+(setq org-agenda-custom-commands
+ '(("d" "Dashboard"
+   ((agenda "" ((org-deadline-warning-days 7)))
+    (todo "DOING"
+      ((org-agenda-overriding-header "Active Tasks")))
+    (tags-todo "agenda/IN-PROGRESS" ((org-agenda-overriding-header "Active Projects")))))
 
-  (setq org-refile-targets
-	'(("~/.emacs.d/org-files/Archive.org" :maxlevel . 1)))
+  ("n" "Tasks in-progress"
+   ((todo "DOING"
+      ((org-agenda-overriding-header "Next Tasks")))))
 
-  ;; Save Org buffers after refiling
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
-  
-  (setq org-tag-alist
-	'((:startgroup)
-	  ; Put mutually exclusive tags here
-	  (:endgroup)
-	  ("home" . ?H)
-	  ("work" . ?W)
-	  ("agenda" . ?a)
-	  ("planning" . ?p)
-	  ("publish" . ?P)
-	  ("note" . ?n)
-	  ("idea" . ?i)))
-   
-  ;; Configure custom agenda views
-  (setq org-agenda-custom-commands
-   '(("d" "Dashboard"
-     ((agenda "" ((org-deadline-warning-days 7)))
-      (todo "DOING"
-        ((org-agenda-overriding-header "Active Tasks")))
-      (tags-todo "agenda/IN-PROGRESS" ((org-agenda-overriding-header "Active Projects")))))
+  ("W" "Work Tasks" tags-todo "+work")
 
-    ("n" "Tasks in-progress"
-     ((todo "DOING"
-        ((org-agenda-overriding-header "Next Tasks")))))
+  ;; Low-effort next actions
+  ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+   ((org-agenda-overriding-header "Low Effort Tasks")
+    (org-agenda-max-todos 20)
+    (org-agenda-files org-agenda-files)))
 
-    ("W" "Work Tasks" tags-todo "+work")
+  ("w" "Workflow Status"
+   ((todo "BACKLOG"
+          ((org-agenda-overriding-header "Project Backlog")
+           (org-agenda-todo-list-sublevels nil)
+           (org-agenda-files org-agenda-files)))
+    (todo "PLANNING"
+          ((org-agenda-overriding-header "In Planning")
+           (org-agenda-todo-list-sublevels nil)
+           (org-agenda-files org-agenda-files)))
+    (todo "READY"
+          ((org-agenda-overriding-header "Ready for Work")
+           (org-agenda-files org-agenda-files)))
+    (todo "IN-PROGRESS"
+          ((org-agenda-overriding-header "Active Projects")
+           (org-agenda-files org-agenda-files)))
+    (todo "REVIEW"
+          ((org-agenda-overriding-header "In Review")
+           (org-agenda-files org-agenda-files)))
+    (todo "WAITING"
+          ((org-agenda-overriding-header "Waiting on something")
+           (org-agenda-files org-agenda-files)))
+    (todo "COMPLETED"
+          ((org-agenda-overriding-header "Completed Projects")
+           (org-agenda-files org-agenda-files)))
+    (todo "CANCELLED"
+          ((org-agenda-overriding-header "Cancelled Projects")
+           (org-agenda-files org-agenda-files)))))))
 
-    ;; Low-effort next actions
-    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-     ((org-agenda-overriding-header "Low Effort Tasks")
-      (org-agenda-max-todos 20)
-      (org-agenda-files org-agenda-files)))
+(setq org-capture-templates
+  `(("t" "Tasks / Projects")
+    ("tt" "Task" entry (file+olp "~/.emacs.d/org-files/Tasks.org" "Inbox")
+         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-    ("w" "Workflow Status"
-     ((todo "BACKLOG"
-            ((org-agenda-overriding-header "Project Backlog")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "PLANNING"
-            ((org-agenda-overriding-header "In Planning")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "READY"
-            ((org-agenda-overriding-header "Ready for Work")
-             (org-agenda-files org-agenda-files)))
-      (todo "IN-PROGRESS"
-            ((org-agenda-overriding-header "Active Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "REVIEW"
-            ((org-agenda-overriding-header "In Review")
-             (org-agenda-files org-agenda-files)))
-      (todo "WAITING"
-            ((org-agenda-overriding-header "Waiting on something")
-             (org-agenda-files org-agenda-files)))
-      (todo "COMPLETED"
-            ((org-agenda-overriding-header "Completed Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "CANCELLED"
-            ((org-agenda-overriding-header "Cancelled Projects")
-             (org-agenda-files org-agenda-files)))))))
+    ("j" "Journal Entries")
+    ("jj" "Journal" entry
+         (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+         "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+         ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+         :clock-in :clock-resume
+         :empty-lines 1)
+    ("jm" "Meeting" entry
+         (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+         "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+         :clock-in :clock-resume
+         :empty-lines 1)
 
-  (setq org-capture-templates
-    `(("t" "Tasks / Projects")
-      ("tt" "Task" entry (file+olp "~/.emacs.d/org-files/Tasks.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+    ("w" "Workflows")
+    ("we" "Checking Email" entry (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
+         "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
 
-      ("j" "Journal Entries")
-      ("jj" "Journal" entry
-           (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
-           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-           :clock-in :clock-resume
-           :empty-lines 1)
-      ("jm" "Meeting" entry
-           (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
-           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-           :clock-in :clock-resume
-           :empty-lines 1)
+    ("m" "Metrics Capture")
+    ("mw" "Weight" table-line (file+headline "~/.emacs.d/org-files/Metrics.org" "Weight")
+     "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
 
-      ("w" "Workflows")
-      ("we" "Checking Email" entry (file+olp+datetree "~/.emacs.d/org-files/Journal.org")
-           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+(define-key global-map (kbd "C-c c")
+  (lambda () (interactive) (org-capture)))
 
-      ("m" "Metrics Capture")
-      ("mw" "Weight" table-line (file+headline "~/.emacs.d/org-files/Metrics.org" "Weight")
-       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+(require 'org-habit)
+(add-to-list 'org-modules 'org-habit)
+(setq org-habit-graph-column 60)
 
-  (define-key global-map (kbd "C-c c")
-    (lambda () (interactive) (org-capture)))
-  
-  (agm/org-font-setup))
+(setq org-refile-targets
+  '(("~/.emacs.d/org-files/Archive.org" :maxlevel . 1)))
+
+;; Save Org buffers after refiling
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+
+(setq org-tag-alist
+  '((:startgroup)
+    ; Put mutually exclusive tags here
+    (:endgroup)
+    ("home" . ?H)
+    ("work" . ?W)
+    ("agenda" . ?a)
+    ("planning" . ?p)
+    ("publish" . ?P)
+    ("note" . ?n)
+    ("idea" . ?i)))
+
+(agm/org-font-setup))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("❂" "⊛" "☉" "◎" "●" "◉" "○" "◌")))
+  (org-bullets-bullet-list '("❂" "⊛" "❖" "◎" "●" "◉" "○" "◌")))
   ;;(org-bullets-bullet-list '("❂" "⊛" "☉" "◎" "◉" "●")))
 
 (defun agm/org-mode-visual-fill ()
@@ -416,6 +393,16 @@
 
 (setq org-confirm-babel-evaluate nil)
 
+;; Auto-tangle Init.org to init.el file on save
+(defun agm/org-babel-tangle-config()
+  (when (string-equal (buffer-file-name)
+                      (expand-file-name "~/.emacs.d/org-confs/Init.org"))
+    ;; Dynamic scoping to the rescue
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle))))
+
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'agm/org-babel-tangle-config)))
+
 ;; Structure Templates
 (require 'org-tempo)
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
@@ -427,7 +414,8 @@
   :custom
   (org-image-actual-width nil))
 
-;; Programming and Scripting language packages ----------------------------
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 (use-package powershell)
 (use-package fish-mode)
 (use-package vimrc-mode)
@@ -435,18 +423,3 @@
   :hook ((html-mode css-mode) . emmet-mode))
 (use-package dockerfile-mode
   :ensure t)
-
-;; Automatically added by Custom ------------------------------------------
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(org-tree-slide doom-modeline dockerfile-mode lsp-python-ms lsp-mode emmet-mode vimrc-mode fish-mode powershell dashboard visual-fill-column centered-window org-bullets evil-magit magit counsel-projectile projectile general evil-collection evil doom-themes helpful counsel ivy-rich which-key rainbow-delimiters ivy use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
