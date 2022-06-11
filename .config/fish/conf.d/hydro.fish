@@ -1,7 +1,7 @@
 #              __________________ 
 #          /\  \   __           /  /\    /\           Author      : Aniket Meshram [AniGMe]
 #         /  \  \  \         __/  /  \  /  \          Description : This is a customized hydro prompt helper file,
-#        /    \  \       _____   /    \/    \                       which contains code for modified, non-committed,
+#        /    \  \       _____   /    \/    \                       which contains config for git modified, non-committed,
 #       /  /\  \  \     /    /  /            \                      and untracked files.
 #      /        \  \        /  /      \/      \                     https://github.com/jorgebucaran/hydro.
 #     /          \  \      /  /                \                    Many thanks Jorge !!
