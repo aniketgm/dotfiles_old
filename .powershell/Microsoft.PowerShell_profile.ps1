@@ -1,8 +1,8 @@
 #              __________________ 
 #          /\  \   __           /  /\    /\           Author      : Aniket Meshram [AniGMe]
 #         /  \  \  \         __/  /  \  /  \          Description : This is a powershell configuration file
-#        /    \  \       _____   /    \/    \                       similar to .bashrc for bash, which run before
-#       /  /\  \  \     /    /  /            \                      the powershell prmpt appears. It contains
+#        /    \  \       _____   /    \/    \                       similar to .bashrc for bash, which runs before
+#       /  /\  \  \     /    /  /            \                      the powershell is launched. It contains
 #      /        \  \        /  /      \/      \                     configurations such as Aliases, Functions, etc...
 #     /          \  \      /  /                \
 #    /            \  \    /  /                  \     Github Repo : https://github.com/aniketgm/dotfiles
@@ -96,7 +96,7 @@ function U {
 }
 
 # Upload file(s) to Github Repo
-function upload {
+function ghup {
     Param(
         [Parameter(Position=0)][String]$file,
         [Parameter(Mandatory=$True, Position=1)][String]$msg,
